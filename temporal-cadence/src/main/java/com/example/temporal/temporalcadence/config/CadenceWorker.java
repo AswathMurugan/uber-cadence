@@ -1,7 +1,7 @@
 package com.example.temporal.temporalcadence.config;
 
-import com.example.temporal.temporalcadence.dsl.randomNumberGenter.RNGActivityImpl;
-import com.example.temporal.temporalcadence.dsl.randomNumberGenter.RNGActivityWorkFlowImpl;
+
+import com.example.temporal.temporalcadence.hello.HelloWorld;
 import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
@@ -25,12 +25,11 @@ public class CadenceWorker {
     public static WorkflowClient client = WorkflowClient.newInstance(service);
 
     @Bean
-    public void worker() throws JSONException {
+    public void worker(){
         WorkerFactory factory = WorkerFactory.newInstance(client);
         Worker worker = factory.newWorker(TASK_QUEUE);
-
-        worker.registerWorkflowImplementationTypes(RNGActivityWorkFlowImpl.class);
-        worker.registerActivitiesImplementations(new RNGActivityImpl());
+        worker.registerWorkflowImplementationTypes(HelloWorld.HelloWorldWorkFlowImpl.class);
+        worker.registerActivitiesImplementations(new HelloWorld.HelloWorldActivityImpl());
         factory.start();
         logger.info("Thread..{} Starting the workflow task name:..{}",Thread.currentThread().getName(), TASK_QUEUE);
     }
