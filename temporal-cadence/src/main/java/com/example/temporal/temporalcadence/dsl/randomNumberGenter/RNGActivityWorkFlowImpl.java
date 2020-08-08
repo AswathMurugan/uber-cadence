@@ -27,20 +27,27 @@ public class RNGActivityWorkFlowImpl implements RNGActivityWorkFlow {
     private String lastActivityResult;
     @Override
     public String execute(String data, String state) throws JSONException {
-        randomNumberActivityActivity.loadDataRandomNumber(data);
-        while (true){
-            currentActivityMap = randomNumberActivityActivity
-                    .getNextStepRandomNumber(state);
-            if(currentActivityMap.isEmpty()){
-                HashMap<String,Object> resp = randomNumberActivityActivity
-                        .responseRandomNumber();
-                return resp.toString();
+        try{
+            randomNumberActivityActivity.loadDataRandomNumber(data);
+            while (true){
+                currentActivityMap = randomNumberActivityActivity
+                        .getNextStepRandomNumber(state);
+                if(currentActivityMap.isEmpty()){
+                    logger.info("LastActivity Result ...{}", lastActivityResult);
+                    return lastActivityResult;
+                }
+                logger.info("Current Activity data ....{}", currentActivityMap.toString());
+                state = currentActivityMap.get("nextState");
+                //execute
+                lastActivityResult = activities.execute(currentActivityMap.get("activity"),
+                        String.class, lastActivityResult);
+                logger.info("lastactivity ..{}", lastActivityResult);
             }
-            logger.info("Current Activity data ....{}", currentActivityMap.toString());
-            state = currentActivityMap.get("nextState");
-            //execute
-            lastActivityResult = activities.execute(currentActivityMap.get("activity"),
-                    String.class, lastActivityResult);
+
+        }catch (Exception ex){
+            logger.info("Execution on workflow...{}", ex);
         }
+        return null;
+
     }
 }

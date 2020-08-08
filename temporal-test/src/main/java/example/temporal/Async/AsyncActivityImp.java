@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 import static example.temporal.Async.MainWorker.GET_URL;
+import static example.temporal.Async.MainWorker.GET_URL_SLEEEP;
 
 public class AsyncActivityImp implements AsyncActivity {
 
@@ -31,23 +32,16 @@ public class AsyncActivityImp implements AsyncActivity {
 
         ActivityExecutionContext context = Activity.getExecutionContext();
         byte[] taskToken = context.getTaskToken();
-
-        try {
-            asyncGetStringHttpResponse(GET_URL,"one",taskToken,completionClient);
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        asyncGetStringHttpResponse(GET_URL_SLEEEP,"30",taskToken,completionClient);
         context.doNotCompleteOnReturn();
-        return "igoner";
+        return "ignore";
     }
 
 
 
     //Async rest
     //webflux
-    public void asyncGetStringHttpResponse(String url, String val, byte[] taskToken, ActivityCompletionClient completionClient) throws IOException, InterruptedException {
+    public void asyncGetStringHttpResponse(String url, String val, byte[] taskToken, ActivityCompletionClient completionClient) {
 
         CompletableFuture<ResponseEntity<String>> completableFuture;
         String formatURL = String.format(url, val);

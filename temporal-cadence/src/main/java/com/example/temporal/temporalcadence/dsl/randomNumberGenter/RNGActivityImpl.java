@@ -14,7 +14,7 @@ public class RNGActivityImpl implements  RNGActivity{
     private static Logger logger = Workflow.getLogger(RNGActivityImpl.class);
 
     private static JSONObject definitionsObj;
-    private static boolean endTask = false;
+    public static boolean endTask = false;
     private static int result;
 
     @Override
@@ -34,6 +34,7 @@ public class RNGActivityImpl implements  RNGActivity{
                         activity,nextState,endTask);
                 return output;
             }
+            logger.info("End of the worflow json is true");
 
         }catch (Exception ex){
             logger.error("Exception while getting activity from input..{}", ex);

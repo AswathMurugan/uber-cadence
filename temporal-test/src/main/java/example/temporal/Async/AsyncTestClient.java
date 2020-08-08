@@ -1,9 +1,11 @@
 package example.temporal.Async;
 
+import io.temporal.api.common.v1.WorkflowExecution;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
 public class AsyncTestClient {
@@ -16,9 +18,15 @@ public class AsyncTestClient {
                         AsyncActivityWorkFlow.class, WorkflowOptions.newBuilder().setTaskQueue(MainWorker.TASK_QUEUE).build());
 
 
-        CompletableFuture<String> greeting = WorkflowClient.execute(workflow::execute);
+        //CompletableFuture<String> greeting = WorkflowClient.execute(workflow::execute);
 
-        System.out.println(greeting.get());
+        //System.out.println(greeting.get());
+        WorkflowExecution workflowExecution = WorkflowClient.start(workflow::execute);
+        System.out.println("Started process file workflow with workflowId=\"" + workflowExecution.getWorkflowId()
+                + "\" and runId=\"" + workflowExecution.getRunId() + "\"");
+
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await();
         System.exit(0);
     }
 }

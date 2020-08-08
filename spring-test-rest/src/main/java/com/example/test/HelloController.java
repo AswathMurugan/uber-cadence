@@ -19,7 +19,7 @@ public class HelloController {
     @RequestMapping("/ca/sleep/{val}")
     public String indexTest(@PathVariable("val") String val) throws InterruptedException {
         System.out.println("###### with sleeep" + val);
-        TimeUnit.MINUTES.sleep(1);
+        TimeUnit.SECONDS.sleep(Integer.valueOf(val));
         System.out.println("###### " + val);
         return val;
     }

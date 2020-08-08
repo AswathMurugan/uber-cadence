@@ -24,6 +24,7 @@ public class MainWorker {
 
     //Simple spring boot rest it will same input
     public static String GET_URL = "http://localhost:9012/ca/%s";
+    public static String GET_URL_SLEEEP = "http://localhost:9012/ca/sleep/%s";
 
     // Start a worker that hosts the workflow implementation.
     public static WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
