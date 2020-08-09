@@ -1,13 +1,13 @@
-package com.example.temporal.temporalcadence;
+package com.example.temporal.temporalsample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TemporalCadenceApplication {
+public class TemporalSampleApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TemporalCadenceApplication.class, args);
+		SpringApplication.run(TemporalSampleApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package example.temporal.Async;
+package com.example.temporal.temporalsample.testsample.Async;
 
 import io.temporal.activity.ActivityOptions;
 import io.temporal.workflow.Async;
@@ -6,10 +6,7 @@ import io.temporal.workflow.Promise;
 import io.temporal.workflow.Workflow;
 import org.slf4j.Logger;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
 
 public class AsyncActivityWorkFlowImpl implements AsyncActivityWorkFlow {
 
