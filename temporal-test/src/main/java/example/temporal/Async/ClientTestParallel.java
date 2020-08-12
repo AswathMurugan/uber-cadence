@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 public class ClientTestParallel {
     public static void main(String[] args) {
-        IntStream.range(0,1000).parallel().forEach(i->{
+        IntStream.range(0,3000).parallel().forEach(i->{
             AsyncActivityWorkFlow workflow =
                     MainWorker.client.newWorkflowStub(
                             AsyncActivityWorkFlow.class, WorkflowOptions.newBuilder().setTaskQueue(MainWorker.TASK_QUEUE).build());

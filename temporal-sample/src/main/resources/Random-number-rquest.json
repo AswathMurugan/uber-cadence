@@ -1,0 +1,37 @@
+{
+  "name": "get_random_number",
+  "description": "Generate random number between two given number",
+  "workflowDef": {
+    "elementType": "RANDOM_NUMBER",
+    "componentType": "RANDOMNO",
+    "sequenceID": 2,
+    "uuid": "cd394b8e-813c-4320-a181-218b5bfbccf7",
+    "version": "3.3.0.22",
+    "erid": 85,
+    "user_id": 9,
+    "keyedAttrs": null,
+    "userName": "ewqmyygzjcieiwg",
+    "tenantId": -1,
+    "config":
+    {
+      "seedValue": null
+    },
+    "tasks": [
+      {
+        "nodeName": "Random Generator",
+        "release": "//new_project/new_release",
+        "taskName": "new_one",
+        "taskId": "TK 000028",
+        "projectAppgroup": "rtesting",
+        "releaseApp": "rtesting",
+        "inputParameters": {
+          "iterationID": 1,
+          "data": {
+            "minValue": 1,
+            "maxValue": 10
+          }
+        }
+      }
+    ]
+  }
+}

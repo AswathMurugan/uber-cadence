@@ -8,7 +8,4 @@ public interface AsyncActivity {
 
     @ActivityMethod
     String asyncApiCallOne();
-
-    //@ActivityMethod
-    //String asyncApiCallTwo(String input) throws IOException, InterruptedException;
 }

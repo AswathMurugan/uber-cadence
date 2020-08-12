@@ -1,6 +1,7 @@
 package com.example.temporal.temporalsample.testsample.clients.async;
 
 import com.example.temporal.temporalsample.testsample.Async.AsyncActivityWorkFlow;
+import com.example.temporal.temporalsample.testsample.Async.MainWorker;
 import io.temporal.api.common.v1.WorkflowExecution;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
@@ -8,7 +9,7 @@ import io.temporal.client.WorkflowOptions;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
-import static com.example.temporal.temporalsample.testsample.clients.async.MainWorker.TASK_QUEUE;
+import static com.example.temporal.temporalsample.testsample.Async.MainWorker.TASK_QUEUE;
 
 public class AsyncTestClient {
 

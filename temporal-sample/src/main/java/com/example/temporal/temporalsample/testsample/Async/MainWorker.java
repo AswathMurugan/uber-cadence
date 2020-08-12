@@ -1,4 +1,4 @@
-package com.example.temporal.temporalsample.testsample.clients.async;
+package com.example.temporal.temporalsample.testsample.Async;
 
 import com.example.temporal.temporalsample.testsample.Async.AsyncActivityImp;
 import com.example.temporal.temporalsample.testsample.Async.AsyncActivityWorkFlowImpl;

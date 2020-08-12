@@ -25,10 +25,11 @@ public class AsyncActivityWorkFlowImpl implements AsyncActivityWorkFlow {
 
     @Override
     public String execute() {
-        Promise<String> asyncCall = Async.function(()->activity.asyncApiCallOne());
-        long time = System.currentTimeMillis();
-        String result = asyncCall.get();
-        logger.info("Execution time {}", (System.currentTimeMillis() - time)/1000);
-        return result;
+        long time = Workflow.currentTimeMillis();
+        //Promise<String> asyncCall = Async.function(()->activity.asyncApiCallOne());
+        //String result = asyncCall.get();
+        Workflow.sleep(Duration.ofSeconds(25));
+        logger.info("WorkFlow id {} ...Execution time {}",Workflow.getInfo().getWorkflowId(), (Workflow.currentTimeMillis() - time)/1000);
+        return "result";
     }
 }

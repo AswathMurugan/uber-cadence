@@ -1,6 +1,7 @@
 package com.example.temporal.temporalsample.testsample.clients.async;
 
 import com.example.temporal.temporalsample.testsample.Async.AsyncActivityWorkFlow;
+import com.example.temporal.temporalsample.testsample.Async.MainWorker;
 import io.temporal.api.common.v1.WorkflowExecution;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;

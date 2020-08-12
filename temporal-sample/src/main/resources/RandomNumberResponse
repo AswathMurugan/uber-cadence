@@ -1,0 +1,29 @@
+{
+  "componentType":"RANDOMNO",
+  "sequenceID":2,
+  "uuid":"cd394b8e-813c-4320-a181-218b5bfbccf7",
+  "elementType":"RANDOM_NUMBER",
+  "error":null,
+  "runStatus":{
+    "executionTime":248,
+    "startTime":1596627143136,
+    "endTime":1596627143384
+  },
+  "results":[
+    {
+      "iterationID":1,
+      "runStatus":{
+        "executionTime":3,
+        "startTime":1596627143380,
+        "endTime":1596627143383
+      },
+      "data":
+      {
+        "resultValue":9
+      },
+      "error":null,
+      "runInfo":null
+    }
+  ],
+  "runInfo":null
+}
