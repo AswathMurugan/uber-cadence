@@ -1,27 +1,25 @@
-package example.temporal.signalProto.senderWorkFlow.senderC;
+package example.temporal.signalProto.senderWorkFlow.senderD;
 
 import example.temporal.signalProto.SignalProtoWorker;
-import example.temporal.signalProto.senderWorkFlow.senderA.AWorkFlow;
+import example.temporal.signalProto.senderWorkFlow.senderB.BWorkFlow;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 
-import java.time.Duration;
-
-public class CClient {
+public class DClient {
 
     public static void main(String[] args) {
         WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
         WorkflowClient client = WorkflowClient.newInstance(service);
 
-        CWorkFlow workflow =
+        DWorkflow workflow =
                 client.newWorkflowStub(
-                        CWorkFlow.class, WorkflowOptions.newBuilder()
+                        DWorkflow.class, WorkflowOptions.newBuilder()
                                 .setTaskQueue(SignalProtoWorker.TASK_QUEUE)
-                                .setWorkflowId("SENDER_C")
-                                .setWorkflowTaskTimeout(Duration.ofMinutes(5))
+                                .setWorkflowId("SENDER_D")
+                                //.setWorkflowTaskTimeout(Duration.ofMinutes(5))
                                 .build());
-        System.out.println(workflow.cExecute("3","40",""));
+        workflow.dExecute("WORKFLOW_SIGNAL_PROTO_A",1);
         System.exit(0);
     }
 }

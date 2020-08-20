@@ -8,7 +8,7 @@ import io.temporal.workflow.WorkflowMethod;
 public interface CWorkFlow {
 
     @WorkflowMethod
-    String cExecute(String id,String sec);
+    String cExecute(String id,String sec, String workflowName);
 
     @SignalMethod
     void senderCResult(String result);

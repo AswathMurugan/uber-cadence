@@ -1,4 +1,11 @@
 package example.temporal.xmlToJsonTest;
 
-public class XJTestWorkFlow {
+import io.temporal.workflow.WorkflowInterface;
+import io.temporal.workflow.WorkflowMethod;
+
+@WorkflowInterface
+public interface XJTestWorkFlow {
+
+    @WorkflowMethod
+    String execute(String xmlData);
 }

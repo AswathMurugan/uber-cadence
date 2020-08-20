@@ -19,9 +19,9 @@ public class BClient {
                         BWorkFlow.class, WorkflowOptions.newBuilder()
                                 .setTaskQueue(SignalProtoWorker.TASK_QUEUE)
                                 .setWorkflowId("SENDER_B")
-                                .setWorkflowTaskTimeout(Duration.ofMinutes(5))
+                                //.setWorkflowTaskTimeout(Duration.ofMinutes(5))
                                 .build());
-        System.out.println(workflow.bExecute("1","50"));
+        workflow.bExecute("WORKFLOW_SIGNAL_PROTO_A",1);
         System.exit(0);
     }
 }

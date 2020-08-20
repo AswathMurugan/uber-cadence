@@ -12,7 +12,7 @@ public class SignalProtoClient {
     // In a real application use a business ID like customer ID or order ID
     static String workflowId = "WORKFLOW_SIGNAL_PROTO_ONE";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
         WorkflowClient client = WorkflowClient.newInstance(service);
 
@@ -25,5 +25,6 @@ public class SignalProtoClient {
         // Start workflow asynchronously to not use another thread to signal.
         WorkflowClient.start(workflow::execute);
         System.out.println("Process WorkFlow is started and waiting for signal message ");
+        Thread.sleep(6000);
     }
 }

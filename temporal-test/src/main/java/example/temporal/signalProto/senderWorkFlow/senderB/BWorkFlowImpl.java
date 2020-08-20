@@ -1,12 +1,12 @@
 package example.temporal.signalProto.senderWorkFlow.senderB;
 
-import example.temporal.signalProto.SignalProtoWorker;
-import example.temporal.signalProto.processor.ProcessorWorkFlow;
-import example.temporal.signalProto.senderWorkFlow.senderA.AWorkFlowImpl;
+import io.temporal.workflow.ExternalWorkflowStub;
 import io.temporal.workflow.Workflow;
 import org.slf4j.Logger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class BWorkFlowImpl implements BWorkFlow {
 
@@ -15,26 +15,38 @@ public class BWorkFlowImpl implements BWorkFlow {
     String response = "";
 
     @Override
-    public String bExecute(String id,String sec) {
-        //calling signal
-        ProcessorWorkFlow processorWorkFlow =  Workflow.newExternalWorkflowStub
-                (ProcessorWorkFlow.class, "WORKFLOW_SIGNAL_PROTO_ONE");
-        HashMap<String ,String> tmpData = new HashMap<>();
-        tmpData.put("id",Workflow.getInfo().getWorkflowId());
-        tmpData.put("input",sec);
-        tmpData.put("runId", Workflow.getInfo().getRunId());
-        tmpData.put("signal","senderBResult");
-        processorWorkFlow.waitForMessage(tmpData); //
-        Workflow.await(()-> !response.isEmpty());
-        if(response != null){
-            logger.info(" Sender B Got the response from the signal processor");
-            String result =  response;
+    public void bExecute(String signalWorkFlowId,int id) {
+
+        for(int i = 0; i<5; i++){
+            //calling signal
+            String  signal = callingSignal(signalWorkFlowId,"Signal_"+id+"."+i);
+            logger.info("Response from signal processor {}", signal);
+        }
+
+    }
+
+    private String callingSignal(String signalWorkFlowId,String input) {
+        String workFlowId = Workflow.getInfo().getWorkflowId();
+        String runId = Workflow.getInfo().getRunId();
+        ExternalWorkflowStub processorSignal = Workflow.newUntypedExternalWorkflowStub(signalWorkFlowId);
+        HashMap<String, String> data = messageBuilder(workFlowId,input,runId);
+        processorSignal.signal("waitForMessage", data);
+        Workflow.await(() -> !response.isEmpty());
+        if (response != null) {
+            String result = response;
             response = "";
             return result;
         }
-        logger.info("Received nothing.");
-        return "nothing";
+        return "";
+    }
 
+    private HashMap<String, String> messageBuilder(String workflowId,String input,String runId) {
+        HashMap<String ,String> data = new HashMap<>();
+        data.put("id", workflowId);
+        data.put("input",input);
+        data.put("runId", runId);
+        data.put("signal","senderBResult");
+        return data;
     }
 
     @Override

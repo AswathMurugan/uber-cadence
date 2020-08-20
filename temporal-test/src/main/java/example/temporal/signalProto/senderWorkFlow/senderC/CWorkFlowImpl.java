@@ -14,10 +14,10 @@ public class CWorkFlowImpl implements CWorkFlow {
     String response = "";
 
     @Override
-    public String cExecute(String id,String sec) {
+    public String cExecute(String id,String sec, String workflowName) {
         //calling signal
         ProcessorWorkFlow processorWorkFlow = Workflow.newExternalWorkflowStub
-                (ProcessorWorkFlow.class, "WORKFLOW_SIGNAL_PROTO_ONE");
+                (ProcessorWorkFlow.class, workflowName);
         HashMap<String, String> tmpData = new HashMap<>();
         tmpData.put("id", Workflow.getInfo().getWorkflowId());
         tmpData.put("input", sec);

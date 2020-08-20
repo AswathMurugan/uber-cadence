@@ -19,10 +19,9 @@ public class AClient {
                 client.newWorkflowStub(
                         AWorkFlow.class, WorkflowOptions.newBuilder()
                                 .setTaskQueue(SignalProtoWorker.TASK_QUEUE)
-                                .setWorkflowId("SENDER_A")
                                 .setWorkflowTaskTimeout(Duration.ofMinutes(5))
                                 .build());
-        System.out.println(workflow.aExecute("1","60"));
+        System.out.println(workflow.aExecute("1","5", "WORKFLOW_SIGNAL_PROTO_A"));
         System.exit(0);
     }
 }
