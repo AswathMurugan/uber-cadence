@@ -1,0 +1,10 @@
+String workflowId = "c1d901c1-49ca-400b-bb0f-ca5cd9eb35c9";
+WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
+WorkflowServiceGrpc.WorkflowServiceBlockingStub stub = service.blockingStub();
+DescribeWorkflowExecutionRequest request =
+    DescribeWorkflowExecutionRequest.newBuilder()
+        .setNamespace("UnitTest")
+        .setExecution(WorkflowExecution.newBuilder().setWorkflowId(workflowId))
+        .build();
+DescribeWorkflowExecutionResponse response = stub.describeWorkflowExecution(request);
+System.out.println(response.getWorkflowExecutionInfo().getStatus());

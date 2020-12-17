@@ -1,0 +1,42 @@
+{
+  "Id": "KYQRHskdWc",
+  "Comment": "Simple workflow for generate random number",
+  "StartAt": "BeginState",
+  "States": {
+    "BeginState": {
+      "Type": "TASK",
+      "TaskName": "",
+      "Activity": "Activity::RandomNumber",
+      "Payload": {"Range": 10},
+      "End": false,
+      "Next": "VerifyState"
+    },
+    "VerifyState": {
+      "Type": "TASK",
+      "TaskName": "",
+      "Activity": "Activity::RandomNumberVerify",
+      "End": true,
+      "Next": ""
+    }
+  }
+}
+
+/**
+"""{
+  "WorkFlowId": "KYQRHskdWc",
+  "StartAt": "BeginState",
+  "States": {
+    "BeginState": {
+      "Type": "TASK",
+      "TaskName": "",
+      "Activity": "",
+      "Payload": "",
+      "End": true,
+      "Next": "NextState"
+    },
+    "NextState": {
+      "Type": "TASK",
+      "End": true
+    }
+  }
+}"""*/

@@ -1,0 +1,34 @@
+{
+"StartAt": "FirstState",
+  "States": {
+    "FirstState": {
+      "Type": "Task",
+      "Activity": "Activity::apiOne",
+      "Input": "result",
+      "Output": "result",
+      "NextState": "SecondState",
+      "Previous": ""
+    },
+    "SecondState": {
+      "Type": "Task",
+      "Activity": "Activity::apiTwo",
+      "Input": "result",
+      "Output": "result",
+      "NextState": "ThirdState",
+      "Previous": "FirstState"
+    },
+    "ThirdState": {
+      "Type": "Task",
+      "Activity": "Activity::apiThree",
+      "Input": "result",
+      "Output": "result",
+      "NextState": "",
+      "Previous": "ThirdState"
+    }
+  },
+  "DefaultState": {
+    "Type": "Fail",
+    "Error": "DefaultStateError",
+    "Cause": "No Matches!"
+  }
+}
